@@ -3,6 +3,7 @@ import Banner from "@/components/Banner";
 import { getAllCourses, getBannerData, getInstructorData } from "@/lib/data";
 import LearningTips from "@/components/LearningTips";
 import Instructor from "@/components/Instructor";
+import TrendingCourses from "@/components/TrendingCourses";
 
 export default async function Home() {
   const bannerData = await getBannerData();
@@ -15,6 +16,7 @@ export default async function Home() {
      <PopularCourses allCourses={allCourses} allInstructorData={allInstructorData} />
      <LearningTips />
      <Instructor allInstructorData={allInstructorData} />
+     <TrendingCourses allCourses={allCourses} allInstructorData={allInstructorData} />
     </div>
   );
 }

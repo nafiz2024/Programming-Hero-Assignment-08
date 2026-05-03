@@ -2,7 +2,8 @@
 const AboutPage = () => {
     return (
         <div>
-            About
+            <h1>About Us</h1>
+            <p>Welcome to our online learning platform!</p>
         </div>
     );
 };

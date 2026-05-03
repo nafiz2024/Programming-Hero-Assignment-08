@@ -3,7 +3,7 @@ import { FiArrowUpRight } from "react-icons/fi";
 import { FaStar } from "react-icons/fa";
 
 const Instructor = ({ allInstructorData }) => {
-    const allInstructors = allInstructorData;
+    const allInstructors = allInstructorData || [];
 
     return (
         <section className="relative overflow-hidden px-4 py-16 sm:px-6 lg:px-0">

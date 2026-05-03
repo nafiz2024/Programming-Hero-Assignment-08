@@ -2,7 +2,7 @@
 const CoursesDetails = () => {
     return (
         <div>
-            Courses Details
+            <h1>Course Details</h1>
         </div>
     );
 };

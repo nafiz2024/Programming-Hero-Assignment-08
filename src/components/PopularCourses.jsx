@@ -3,7 +3,7 @@ import { IoIosStar } from "react-icons/io";
 
 const PopularCourses = ({ allCourses , allInstructorData }) => {
     const popularCourses = allCourses.filter((course) => course.popularCourse === true);
-    const instructorData = allInstructorData;
+    const instructorData = allInstructorData || [];
 
     return (
         <div>
