@@ -79,11 +79,12 @@ const PopularCourses = ({ allCourses , allInstructorData }) => {
 
                                 <div className="mt-5 h-px w-full bg-gradient-to-r from-transparent via-emerald-100 to-transparent"></div>
 
-                                <button className="mt-5 w-full rounded-2xl border-0 bg-gradient-to-r from-amber-400 via-orange-400 to-orange-500 px-5 py-3 text-sm font-bold text-white shadow-[0_16px_30px_-18px_rgba(249,115,22,0.85)] transition duration-300 hover:scale-[1.01] hover:from-amber-500 hover:via-orange-500 hover:to-orange-600">
-                                    <Link href={`/allcourse/${course.id}`} className="flex items-center justify-center gap-2">
-                                        View Course
-                                    </Link>
-                                </button>
+                                <Link
+                                    href={`/courses/${course.id}`}
+                                    className="mt-5 flex w-full items-center justify-center gap-2 rounded-2xl border-0 bg-gradient-to-r from-amber-400 via-orange-400 to-orange-500 px-5 py-3 text-sm font-bold text-white shadow-[0_16px_30px_-18px_rgba(249,115,22,0.85)] transition duration-300 hover:scale-[1.01] hover:from-amber-500 hover:via-orange-500 hover:to-orange-600"
+                                >
+                                    View Course
+                                </Link>
                             </div>
                         </div>
                     )})

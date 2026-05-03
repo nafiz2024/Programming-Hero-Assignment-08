@@ -175,7 +175,7 @@ const AllCourses = async () => {
                                         <div className="h-px w-full bg-gradient-to-r from-transparent via-emerald-100 to-transparent"></div>
 
                                         <Link
-                                            href={`/allcourses/${course.id}`}
+                                            href={`/courses/${course.id}`}
                                             className="mt-5 flex w-full items-center justify-center gap-2 rounded-2xl border-0 bg-gradient-to-r from-emerald-500 via-teal-500 to-sky-500 px-5 py-3 text-sm font-bold text-white shadow-[0_16px_30px_-18px_rgba(20,184,166,0.85)] transition duration-300 hover:scale-[1.01] hover:from-emerald-600 hover:via-teal-600 hover:to-sky-600"
                                         >
                                             View Course Details
