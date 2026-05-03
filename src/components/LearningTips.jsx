@@ -24,7 +24,7 @@ const LearningTips = () => {
     ];
 
     return (
-        <section className="relative overflow-hidden px-4 py-16 sm:px-6 lg:px-0">
+        <section className="relative overflow-hidden px-4 py-8 sm:px-6 lg:px-0">
             <div className="absolute left-1/2 top-10 h-40 w-40 -translate-x-1/2 rounded-full bg-emerald-100/40 blur-3xl"></div>
             <div className="absolute right-0 top-24 h-48 w-48 rounded-full bg-amber-100/40 blur-3xl"></div>
 

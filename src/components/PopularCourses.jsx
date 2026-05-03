@@ -6,7 +6,7 @@ const PopularCourses = ({ allCourses , allInstructorData }) => {
     const instructorData = allInstructorData || [];
 
     return (
-        <div>
+        <section className="px-0 py-8">
             <div className="relative mb-10 px-4 text-center sm:px-6 lg:px-0">
                 <div className="absolute left-1/2 top-0 h-24 w-24 -translate-x-1/2 rounded-full bg-emerald-100/40 blur-3xl"></div>
                 <span className="relative inline-flex rounded-full border border-emerald-200 bg-white/85 px-5 py-2 text-sm font-semibold text-emerald-700 shadow-sm shadow-emerald-100 backdrop-blur-sm">
@@ -93,7 +93,7 @@ const PopularCourses = ({ allCourses , allInstructorData }) => {
                     </p>
                 )}
             </div>
-        </div>
+        </section>
     );
 };
 

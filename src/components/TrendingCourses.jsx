@@ -7,7 +7,7 @@ const TrendingCourses = ({ allCourses, allInstructorData }) => {
     const instructorData = allInstructorData || [];
 
     return (
-        <section className="relative overflow-hidden px-4 py-16 sm:px-6 lg:px-0">
+        <section className="relative overflow-hidden px-4 py-8 sm:px-6 lg:px-0">
             <div className="pointer-events-none absolute left-0 top-16 h-44 w-44 rounded-full bg-emerald-100/40 blur-3xl"></div>
             <div className="pointer-events-none absolute right-0 top-10 h-52 w-52 rounded-full bg-amber-100/40 blur-3xl"></div>
 

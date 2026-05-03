@@ -6,7 +6,7 @@ const Instructor = ({ allInstructorData }) => {
     const allInstructors = allInstructorData || [];
 
     return (
-        <section className="relative overflow-hidden px-4 py-16 sm:px-6 lg:px-0">
+        <section className="relative overflow-hidden px-4 py-8 sm:px-6 lg:px-0">
             <div className="absolute left-0 top-16 h-44 w-44 rounded-full bg-amber-100/40 blur-3xl"></div>
             <div className="absolute right-10 top-8 h-36 w-36 rounded-full bg-emerald-100/40 blur-3xl"></div>
 
