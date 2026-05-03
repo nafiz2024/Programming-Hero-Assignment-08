@@ -4,10 +4,10 @@ import { FiArrowLeft, FiImage, FiLock, FiMail, FiSave, FiUser } from "react-icon
 
 const UpdateProfilePage = () => {
     return (
-        <section className="relative overflow-hidden px-3 py-14 sm:px-4 lg:px-6">
+        <section className="relative overflow-hidden px-3 py-8 sm:px-4 sm:py-10 lg:px-6 lg:py-14">
             <div className="mx-auto flex min-h-[calc(100vh-220px)] max-w-[38rem] items-center justify-center">
-                <div className="w-full overflow-hidden rounded-[2rem] border border-white/70 bg-white/80 shadow-[0_24px_80px_rgba(15,23,42,0.12)] backdrop-blur">
-                    <div className="p-5 sm:p-6 lg:p-8">
+                <div className="w-full overflow-hidden rounded-[1.75rem] border border-white/70 bg-white/80 shadow-[0_24px_80px_rgba(15,23,42,0.12)] backdrop-blur">
+                    <div className="p-4 sm:p-6 lg:p-8">
                         <div className="mx-auto w-full max-w-md">
                             <div className="mb-8 space-y-3 text-center sm:text-left">
                                 <Link
@@ -77,15 +77,13 @@ const UpdateProfilePage = () => {
                                     </span>
                                 </label>
 
-                                <Link
-                                    href="/"
+                                <button
                                     type="submit"
                                     className="btn mt-2 h-12 w-full rounded-2xl border-0 bg-gradient-to-r from-amber-400 via-orange-400 to-orange-500 text-base font-bold text-white shadow-[0_16px_30px_-18px_rgba(249,115,22,0.85)] hover:from-amber-500 hover:via-orange-500 hover:to-orange-600"
                                 >
                                     <FiSave className="text-lg" />
                                     Save Changes
-                                </Link>
-                                
+                                </button>
                             </form>
                         </div>
                     </div>

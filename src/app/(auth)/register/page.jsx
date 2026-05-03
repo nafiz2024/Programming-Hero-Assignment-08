@@ -5,16 +5,16 @@ import navLogo from "@/assets/NavLogo.png";
 
 const RegisterPage = () => {
     return (
-        <section className="relative overflow-hidden px-4 py-14 sm:px-6 lg:px-8">
+        <section className="relative overflow-hidden px-3 py-8 sm:px-5 sm:py-10 lg:px-8 lg:py-14">
             <div className="mx-auto flex min-h-[calc(100vh-220px)] max-w-5xl items-center justify-center">
-                <div className="grid w-full overflow-hidden rounded-[2rem] border border-white/70 bg-white/80 shadow-[0_24px_80px_rgba(15,23,42,0.12)] backdrop-blur xl:grid-cols-[1.05fr_0.95fr]">
-                    <div className="hidden bg-[linear-gradient(160deg,_rgba(16,185,129,0.96),_rgba(5,150,105,0.92))] p-10 text-white xl:flex xl:flex-col xl:justify-between">
+                <div className="grid w-full overflow-hidden rounded-[1.75rem] border border-white/70 bg-white/80 shadow-[0_24px_80px_rgba(15,23,42,0.12)] backdrop-blur lg:grid-cols-[1.05fr_0.95fr]">
+                    <div className="flex flex-col justify-between gap-8 bg-[linear-gradient(160deg,_rgba(16,185,129,0.96),_rgba(5,150,105,0.92))] p-6 text-white sm:p-8 lg:p-10">
                         <div className="space-y-4">
                             <span className="inline-flex w-fit rounded-full border border-white/20 bg-white/10 px-4 py-1 text-sm font-semibold uppercase tracking-[0.24em] text-emerald-50">
                                 SkillSphere
                             </span>
                             <div className="space-y-3">
-                                <h1 className="max-w-sm text-4xl font-black leading-tight">
+                                <h1 className="max-w-sm text-3xl font-black leading-tight sm:text-4xl">
                                     Start learning with one quick account.
                                 </h1>
                                 <p className="max-w-md text-sm leading-7 text-emerald-50/90">
@@ -22,11 +22,11 @@ const RegisterPage = () => {
                                 </p>
                             </div>
                         </div>
-                        <div className="flex justify-center py-8">
+                        <div className="flex justify-center py-2 lg:py-8">
                             <Image
                                 src={navLogo}
                                 alt="SkillSphere logo"
-                                className="h-40 w-40 object-contain"
+                                className="h-24 w-24 object-contain sm:h-32 sm:w-32 lg:h-40 lg:w-40"
                                 priority
                             />
                         </div>
@@ -42,9 +42,9 @@ const RegisterPage = () => {
                         </div>
                     </div>
 
-                    <div className="p-6 sm:p-8 lg:p-10">
+                    <div className="p-5 sm:p-7 lg:p-10">
                         <div className="mx-auto w-full max-w-md">
-                            <div className="mb-8 space-y-2 text-center xl:text-left">
+                            <div className="mb-8 space-y-2 text-center lg:text-left">
                                 <span className="inline-flex rounded-full bg-orange-50 px-4 py-1 text-sm font-semibold text-orange-600">
                                     Join SkillSphere
                                 </span>
