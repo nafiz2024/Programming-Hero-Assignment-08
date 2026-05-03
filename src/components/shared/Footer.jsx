@@ -22,7 +22,7 @@ const Footer = () => {
     ];
 
     return (
-        <footer className="relative mt-16 overflow-hidden rounded-t-[2.5rem] bg-[#09162f] text-white">
+        <footer className="relative mb-4 mt-16 overflow-hidden rounded-[2.5rem] bg-[#09162f] text-white">
             <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(52,211,153,0.18),_transparent_28%),radial-gradient(circle_at_top_right,_rgba(96,165,250,0.16),_transparent_25%),linear-gradient(180deg,_rgba(9,22,47,0.96)_0%,_rgba(7,18,39,1)_100%)]"></div>
             <div className="pointer-events-none absolute left-10 top-14 h-40 w-40 rounded-full bg-emerald-400/10 blur-3xl"></div>
             <div className="pointer-events-none absolute right-10 top-20 h-44 w-44 rounded-full bg-sky-400/10 blur-3xl"></div>
