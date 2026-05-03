@@ -1,9 +1,97 @@
+import Image from "next/image";
+import Link from "next/link";
+import { FiArrowLeft, FiImage, FiLock, FiMail, FiSave, FiUser } from "react-icons/fi";
 
 const UpdateProfilePage = () => {
     return (
-        <div>
-            
-        </div>
+        <section className="relative overflow-hidden px-3 py-14 sm:px-4 lg:px-6">
+            <div className="mx-auto flex min-h-[calc(100vh-220px)] max-w-[38rem] items-center justify-center">
+                <div className="w-full overflow-hidden rounded-[2rem] border border-white/70 bg-white/80 shadow-[0_24px_80px_rgba(15,23,42,0.12)] backdrop-blur">
+                    <div className="p-5 sm:p-6 lg:p-8">
+                        <div className="mx-auto w-full max-w-md">
+                            <div className="mb-8 space-y-3 text-center sm:text-left">
+                                <Link
+                                    href="/profile"
+                                    className="inline-flex items-center gap-2 rounded-full bg-slate-100 px-4 py-2 text-sm font-semibold text-slate-600 transition hover:bg-slate-200"
+                                >
+                                    <FiArrowLeft />
+                                    Back to profile
+                                </Link>
+                                <div className="space-y-2">
+                                    <span className="inline-flex rounded-full bg-amber-50 px-4 py-1 text-sm font-semibold text-amber-600">
+                                        Update Details
+                                    </span>
+                                    <h2 className="text-3xl font-black text-slate-900 sm:text-4xl">Update Profile</h2>
+                                    <p className="text-sm leading-6 text-slate-500">
+                                        Edit your information and save the latest version of your SkillSphere account.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <form className="space-y-4">
+                                <label className="block space-y-2">
+                                    <span className="text-sm font-semibold text-slate-700">Name</span>
+                                    <span className="flex items-center gap-3 rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 shadow-sm shadow-slate-100 transition focus-within:border-emerald-400 focus-within:bg-white">
+                                        <FiUser className="text-slate-400" />
+                                        <input
+                                            type="text"
+                                            placeholder="Enter your name"
+                                            className="w-full bg-transparent text-sm text-slate-700 outline-none placeholder:text-slate-400"
+                                        />
+                                    </span>
+                                </label>
+
+                                <label className="block space-y-2">
+                                    <span className="text-sm font-semibold text-slate-700">Email</span>
+                                    <span className="flex items-center gap-3 rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 shadow-sm shadow-slate-100 transition focus-within:border-emerald-400 focus-within:bg-white">
+                                        <FiMail className="text-slate-400" />
+                                        <input
+                                            type="email"
+                                            placeholder="Enter your email"
+                                            className="w-full bg-transparent text-sm text-slate-700 outline-none placeholder:text-slate-400"
+                                        />
+                                    </span>
+                                </label>
+
+                                <label className="block space-y-2">
+                                    <span className="text-sm font-semibold text-slate-700">Photo URL</span>
+                                    <span className="flex items-center gap-3 rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 shadow-sm shadow-slate-100 transition focus-within:border-emerald-400 focus-within:bg-white">
+                                        <FiImage className="text-slate-400" />
+                                        <input
+                                            type="url"
+                                            placeholder="https://your-photo-url.com"
+                                            className="w-full bg-transparent text-sm text-slate-700 outline-none placeholder:text-slate-400"
+                                        />
+                                    </span>
+                                </label>
+
+                                <label className="block space-y-2">
+                                    <span className="text-sm font-semibold text-slate-700">New Password</span>
+                                    <span className="flex items-center gap-3 rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 shadow-sm shadow-slate-100 transition focus-within:border-emerald-400 focus-within:bg-white">
+                                        <FiLock className="text-slate-400" />
+                                        <input
+                                            type="password"
+                                            placeholder="Update your password"
+                                            className="w-full bg-transparent text-sm text-slate-700 outline-none placeholder:text-slate-400"
+                                        />
+                                    </span>
+                                </label>
+
+                                <Link
+                                    href="/"
+                                    type="submit"
+                                    className="btn mt-2 h-12 w-full rounded-2xl border-0 bg-gradient-to-r from-amber-400 via-orange-400 to-orange-500 text-base font-bold text-white shadow-[0_16px_30px_-18px_rgba(249,115,22,0.85)] hover:from-amber-500 hover:via-orange-500 hover:to-orange-600"
+                                >
+                                    <FiSave className="text-lg" />
+                                    Save Changes
+                                </Link>
+                                
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
     );
 };
 

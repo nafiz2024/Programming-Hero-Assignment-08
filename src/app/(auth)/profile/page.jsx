@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { FiEdit3, FiMail } from "react-icons/fi";
 
 const ProfilePage = () => {
@@ -37,10 +38,9 @@ const ProfilePage = () => {
                         Keep your learner identity polished and updated so your SkillSphere journey always feels personal and organized.
                     </p>
 
-                    <button className="mt-8 inline-flex w-full items-center justify-center gap-2 rounded-2xl border-0 bg-gradient-to-r from-amber-400 via-orange-400 to-orange-500 px-5 py-4 text-base font-bold text-white shadow-[0_16px_30px_-18px_rgba(249,115,22,0.85)] transition duration-300 hover:scale-[1.01] hover:from-amber-500 hover:via-orange-500 hover:to-orange-600">
-                        <FiEdit3 />
+                    <Link href="/update" className="mt-8 inline-flex w-full items-center justify-center gap-2 rounded-2xl border-0 bg-gradient-to-r from-amber-400 via-orange-400 to-orange-500 px-5 py-4 text-base font-bold text-white shadow-[0_16px_30px_-18px_rgba(249,115,22,0.85)] transition duration-300 hover:scale-[1.01] hover:from-amber-500 hover:via-orange-500 hover:to-orange-600">
                         Update Information
-                    </button>
+                    </Link>
                 </div>
             </div>
         </section>
