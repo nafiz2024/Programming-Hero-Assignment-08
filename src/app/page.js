@@ -1,6 +1,7 @@
 import PopularCourses from "@/components/PopularCourses";
 import Banner from "@/components/Banner";
 import { getAllCourses, getBannerData, getInstructorData } from "@/lib/data";
+import LearningTips from "@/components/LearningTips";
 
 export default async function Home() {
   const bannerData = await getBannerData();
@@ -11,7 +12,7 @@ export default async function Home() {
     <div>
      <Banner bannerData={bannerData} />
      <PopularCourses allCourses={allCourses} allInstructorData={allInstructorData} />
-     
+     <LearningTips />
     </div>
   );
 }
