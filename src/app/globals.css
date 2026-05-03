@@ -1,2 +1,4 @@
 @import "tailwindcss";
+@source "./";
+@source "../components";
 @plugin "daisyui";
