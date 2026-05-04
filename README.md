@@ -1,14 +1,8 @@
 # SkillSphere
 
-## Purpose
+SkillSphere is a modern online learning platform built with Next.js. It includes course browsing, course details, authentication, profile management, and course search by title.
 
-SkillSphere is a modern online learning platform built with Next.js. The purpose of this project is to help users explore online courses, view course details, create an account, log in, manage their profile, and search courses by title in a simple and clean interface.
-
-## Live URL
-
-- Live Site: `Add your deployed project URL here`
-
-## Key Features
+## Features
 
 - Browse all courses from the full catalog
 - Search courses by title on the All Courses page
@@ -16,21 +10,6 @@ SkillSphere is a modern online learning platform built with Next.js. The purpose
 - Register and login with email and password
 - Google social sign-in
 - Profile and update profile pages
-
-## NPM Packages Used
-
-- `next`
-- `react`
-- `react-dom`
-- `tailwindcss`
-- `daisyui`
-- `better-auth`
-- `@better-auth/mongo-adapter`
-- `mongodb`
-- `react-hook-form`
-- `react-icons`
-- `react-toastify`
-- `swiper`
 
 ## Tech Stack
 
@@ -90,4 +69,4 @@ npm run format
 
 ## Author
 
-Nafiz
+Nafiz Alam
