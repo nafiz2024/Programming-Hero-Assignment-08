@@ -1,12 +1,13 @@
-"use client";
+'use client';
 
-import Image from "next/image";
-import Link from "next/link";
-import { FcGoogle } from "react-icons/fc";
-import { FiLock, FiMail } from "react-icons/fi";
-import navLogo from "../../../assets/NavLogo.png";
-import { useForm } from "react-hook-form";
-import { authClient } from "../../../lib/auth-client";
+import Image from 'next/image';
+import Link from 'next/link';
+import { FcGoogle } from 'react-icons/fc';
+import { FiLock, FiMail } from 'react-icons/fi';
+import navLogo from '../../../assets/NavLogo.png';
+import { useForm } from 'react-hook-form';
+import { authClient } from '../../../lib/auth-client';
+import { toast } from 'react-toastify';
 
 const LoginPage = () => {
   const {
@@ -16,13 +17,26 @@ const LoginPage = () => {
   } = useForm();
 
   const handleLoginFunction = async (data) => {
-    
-    const { data:res , error } = await authClient.signIn.email({
-    email: data.email, // required
-    password: data.password, // required
-    rememberMe: true,
-    callbackURL: "/",
-});
+    const { data: res, error } = await authClient.signIn.email({
+      email: data.email, // required
+      password: data.password, // required
+      rememberMe: true,
+      callbackURL: '/',
+    });
+
+    if (error) {
+      toast.error(`${error.message}`, {
+        position: 'top-center',
+        autoClose: 3000,
+      });
+    }
+
+    if (res) {
+      toast.success(`Login Successful`, {
+        position: 'top-center',
+        autoClose: 3000,
+      });
+    }
   };
 
   return (
@@ -39,8 +53,8 @@ const LoginPage = () => {
                   Learn smarter, login faster.
                 </h1>
                 <p className="max-w-md text-sm leading-7 text-emerald-50/90">
-                  Continue your courses, track your progress, and keep building new skills every
-                  day.
+                  Continue your courses, track your progress, and keep building
+                  new skills every day.
                 </p>
               </div>
             </div>
@@ -70,40 +84,59 @@ const LoginPage = () => {
                 <span className="inline-flex rounded-full bg-emerald-50 px-4 py-1 text-sm font-semibold text-emerald-700">
                   Welcome back
                 </span>
-                <h2 className="text-3xl font-black text-slate-900 sm:text-4xl">Login</h2>
+                <h2 className="text-3xl font-black text-slate-900 sm:text-4xl">
+                  Login
+                </h2>
                 <p className="text-sm leading-6 text-slate-500">
                   Sign in to continue your learning journey on SkillSphere.
                 </p>
               </div>
 
-              <form onSubmit={handleSubmit(handleLoginFunction)} className="space-y-5">
+              <form
+                onSubmit={handleSubmit(handleLoginFunction)}
+                className="space-y-5"
+              >
                 <label className="block space-y-2">
-                  <span className="text-sm font-semibold text-slate-700">Email</span>
+                  <span className="text-sm font-semibold text-slate-700">
+                    Email
+                  </span>
                   <span className="flex items-center gap-3 rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 shadow-sm shadow-slate-100 transition focus-within:border-emerald-400 focus-within:bg-white">
                     <FiMail className="text-slate-400" />
                     <input
                       type="email"
                       placeholder="Enter your email address"
                       className="w-full bg-transparent text-sm text-slate-700 outline-none placeholder:text-slate-400"
-                      {...register("email", { required: "Email field is required" })}
+                      {...register('email', {
+                        required: 'Email field is required',
+                      })}
                     />
                   </span>
-                  {errors.email && <p className="text-sm text-red-500">{errors.email.message}</p>}
+                  {errors.email && (
+                    <p className="text-sm text-red-500">
+                      {errors.email.message}
+                    </p>
+                  )}
                 </label>
 
                 <label className="block space-y-2">
-                  <span className="text-sm font-semibold text-slate-700">Password</span>
+                  <span className="text-sm font-semibold text-slate-700">
+                    Password
+                  </span>
                   <span className="flex items-center gap-3 rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 shadow-sm shadow-slate-100 transition focus-within:border-emerald-400 focus-within:bg-white">
                     <FiLock className="text-slate-400" />
                     <input
                       type="password"
                       placeholder="Enter your password"
                       className="w-full bg-transparent text-sm text-slate-700 outline-none placeholder:text-slate-400"
-                      {...register("password", { required: "Password field is required" })}
+                      {...register('password', {
+                        required: 'Password field is required',
+                      })}
                     />
                   </span>
                   {errors.password && (
-                    <p className="text-sm text-red-500">{errors.password.message}</p>
+                    <p className="text-sm text-red-500">
+                      {errors.password.message}
+                    </p>
                   )}
                 </label>
 
@@ -132,7 +165,7 @@ const LoginPage = () => {
               </button>
 
               <p className="mt-6 text-center text-sm text-slate-500">
-                New to SkillSphere?{" "}
+                New to SkillSphere?{' '}
                 <Link
                   href="/register"
                   className="font-semibold text-emerald-600 hover:text-emerald-700"

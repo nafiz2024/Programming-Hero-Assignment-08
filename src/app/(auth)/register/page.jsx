@@ -1,12 +1,12 @@
-"use client";
+'use client';
 
-import Image from "next/image";
-import Link from "next/link";
-import { FiImage, FiLock, FiMail, FiUser } from "react-icons/fi";
-import navLogo from "../../../assets/NavLogo.png";
-import { useForm } from "react-hook-form";
-import { authClient } from "../../../lib/auth-client";
-import { toast } from "react-toastify";
+import Image from 'next/image';
+import Link from 'next/link';
+import { FiImage, FiLock, FiMail, FiUser } from 'react-icons/fi';
+import navLogo from '../../../assets/NavLogo.png';
+import { useForm } from 'react-hook-form';
+import { authClient } from '../../../lib/auth-client';
+import { toast } from 'react-toastify';
 
 const RegisterPage = () => {
   const {
@@ -23,19 +23,19 @@ const RegisterPage = () => {
       email: email,
       password: password,
       image: photoUrl,
-      callbackURL: "/",
-    })
+      callbackURL: '/',
+    });
 
     if (error) {
-        toast.error(`${error.message}`, {
-        position: "top-center",
+      toast.error(`${error.message}`, {
+        position: 'top-center',
         autoClose: 3000,
-      })
+      });
     }
 
     if (res) {
       toast.success(`Sign Up Successful`, {
-        position: "top-center",
+        position: 'top-center',
         autoClose: 3000,
       });
     }
@@ -55,8 +55,8 @@ const RegisterPage = () => {
                   Start learning with one quick account.
                 </h1>
                 <p className="max-w-md text-sm leading-7 text-emerald-50/90">
-                  Create your profile, join premium courses, and keep all your learning progress in
-                  one place.
+                  Create your profile, join premium courses, and keep all your
+                  learning progress in one place.
                 </p>
               </div>
             </div>
@@ -86,70 +86,103 @@ const RegisterPage = () => {
                 <span className="inline-flex rounded-full bg-orange-50 px-4 py-1 text-sm font-semibold text-orange-600">
                   Join SkillSphere
                 </span>
-                <h2 className="text-3xl font-black text-slate-900 sm:text-4xl">Register</h2>
+                <h2 className="text-3xl font-black text-slate-900 sm:text-4xl">
+                  Register
+                </h2>
                 <p className="text-sm leading-6 text-slate-500">
                   Create your account and start exploring courses today.
                 </p>
               </div>
 
-              <form onSubmit={handleSubmit(handleRegisterFunction)} className="space-y-4">
+              <form
+                onSubmit={handleSubmit(handleRegisterFunction)}
+                className="space-y-4"
+              >
                 <label className="block space-y-2">
-                  <span className="text-sm font-semibold text-slate-700">Name</span>
+                  <span className="text-sm font-semibold text-slate-700">
+                    Name
+                  </span>
                   <span className="flex items-center gap-3 rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 shadow-sm shadow-slate-100 transition focus-within:border-emerald-400 focus-within:bg-white">
                     <FiUser className="text-slate-400" />
                     <input
                       type="text"
                       placeholder="Enter your name"
                       className="w-full bg-transparent text-sm text-slate-700 outline-none placeholder:text-slate-400"
-                      {...register("name", { required: "Name field is required" })}
+                      {...register('name', {
+                        required: 'Name field is required',
+                      })}
                     />
                   </span>
-                  {errors.name && <p className="text-sm text-red-500">{errors.name.message}</p>}
+                  {errors.name && (
+                    <p className="text-sm text-red-500">
+                      {errors.name.message}
+                    </p>
+                  )}
                 </label>
 
                 <label className="block space-y-2">
-                  <span className="text-sm font-semibold text-slate-700">Email</span>
+                  <span className="text-sm font-semibold text-slate-700">
+                    Email
+                  </span>
                   <span className="flex items-center gap-3 rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 shadow-sm shadow-slate-100 transition focus-within:border-emerald-400 focus-within:bg-white">
                     <FiMail className="text-slate-400" />
                     <input
                       type="email"
                       placeholder="Enter your email"
                       className="w-full bg-transparent text-sm text-slate-700 outline-none placeholder:text-slate-400"
-                      {...register("email", { required: "Email field is required" })}
+                      {...register('email', {
+                        required: 'Email field is required',
+                      })}
                     />
                   </span>
-                  {errors.email && <p className="text-sm text-red-500">{errors.email.message}</p>}
+                  {errors.email && (
+                    <p className="text-sm text-red-500">
+                      {errors.email.message}
+                    </p>
+                  )}
                 </label>
 
                 <label className="block space-y-2">
-                  <span className="text-sm font-semibold text-slate-700">Photo URL</span>
+                  <span className="text-sm font-semibold text-slate-700">
+                    Photo URL
+                  </span>
                   <span className="flex items-center gap-3 rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 shadow-sm shadow-slate-100 transition focus-within:border-emerald-400 focus-within:bg-white">
                     <FiImage className="text-slate-400" />
                     <input
                       type="url"
                       placeholder="https://your-photo-url.com"
                       className="w-full bg-transparent text-sm text-slate-700 outline-none placeholder:text-slate-400"
-                      {...register("photoUrl", { required: "Photo URL field is required" })}
+                      {...register('photoUrl', {
+                        required: 'Photo URL field is required',
+                      })}
                     />
                   </span>
                   {errors.photoUrl && (
-                    <p className="text-sm text-red-500">{errors.photoUrl.message}</p>
+                    <p className="text-sm text-red-500">
+                      {errors.photoUrl.message}
+                    </p>
                   )}
                 </label>
 
                 <label className="block space-y-2">
-                  <span className="text-sm font-semibold text-slate-700">Password</span>
+                  <span className="text-sm font-semibold text-slate-700">
+                    Password
+                  </span>
                   <span className="flex items-center gap-3 rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 shadow-sm shadow-slate-100 transition focus-within:border-emerald-400 focus-within:bg-white">
                     <FiLock className="text-slate-400" />
                     <input
                       type="password"
                       placeholder="Enter your password"
                       className="w-full bg-transparent text-sm text-slate-700 outline-none placeholder:text-slate-400"
-                      {...register("password", { required: "Password field is required" })}
+                      {...register('password', {
+                        required: 'Password field is required',
+                      })}
                     />
                   </span>
                   {errors.password && (
-                    <p className="text-sm text-red-500">{errors.password.message}</p>
+                    <p className="text-sm text-red-500">
+                      {errors.password.message}
+                    </p>
                   )}
                 </label>
 
@@ -162,7 +195,7 @@ const RegisterPage = () => {
               </form>
 
               <p className="mt-6 text-center text-sm text-slate-500">
-                Already have an account?{" "}
+                Already have an account?{' '}
                 <Link
                   href="/login"
                   className="font-semibold text-emerald-600 hover:text-emerald-700"
