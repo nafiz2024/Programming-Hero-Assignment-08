@@ -120,11 +120,11 @@ const Navbar = () => {
                   height={41}
                   unoptimized
                 />
-
+ 
                 <Link
                   href="/login"
                   className="btn btn-ghost hidden rounded-full px-4 text-slate-700 xl:inline-flex"
-                  onClick={async () => await authClient.signOut()}
+                  onClick={ async () => await authClient.signOut()}
                 >
                   <IoIosLogOut />
                   Logout

@@ -1,7 +1,15 @@
+'use client';
+
 import Link from 'next/link';
 import { FiEdit3, FiMail } from 'react-icons/fi';
+import { authClient } from '../../../lib/auth-client';
 
 const ProfilePage = () => {
+  const { data: session, isPending } = authClient.useSession();
+  const userName = session?.user?.name;
+  const avatarSrc = session?.user?.image;
+  const userEmail = session?.user?.email;
+
   return (
     <section className="relative overflow-hidden px-3 py-8 sm:px-5 sm:py-10 lg:px-0 lg:py-12">
       <div className="pointer-events-none absolute left-1/2 top-12 h-56 w-56 -translate-x-1/2 rounded-full bg-emerald-100/45 blur-3xl"></div>
@@ -19,19 +27,21 @@ const ProfilePage = () => {
 
           <div className="mt-8 flex justify-center">
             <img
-              src="https://ui-avatars.com/api/?name=Nafiz+Rahman&background=fff7ed&color=ea580c&bold=true&size=256"
-              alt="Nafiz Rahman"
+              src={avatarSrc}
+              alt={userName || 'User'}
               className="h-28 w-28 rounded-full object-cover ring-4 ring-white shadow-xl shadow-emerald-100"
             />
           </div>
 
           <h1 className="mt-6 text-3xl font-black tracking-tight text-slate-900 sm:text-4xl">
-            Name Avatar
+            {isPending ? 'Loading...' : userName || 'Guest User'}
           </h1>
 
           <div className="mt-3 inline-flex max-w-full items-center gap-2 rounded-full bg-slate-50 px-4 py-2 text-sm font-medium text-slate-600">
             <FiMail className="text-emerald-600" />
-            <span className="truncate">email@skillsphere.com</span>
+            <span className="truncate">
+              {isPending ? 'Loading email...' : userEmail || 'No email found'}
+            </span>
           </div>
 
           <p className="mx-auto mt-5 max-w-sm text-sm leading-7 text-slate-600">
