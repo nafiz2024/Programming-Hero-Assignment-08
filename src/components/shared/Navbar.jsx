@@ -2,30 +2,15 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { useState } from 'react';
-import { useRouter } from 'next/navigation';
 import { FiLogIn, FiMenu, FiUserPlus } from 'react-icons/fi';
 import navLogo from '../../assets/NavLogo.png';
 import { authClient } from '../../lib/auth-client';
 import { IoIosLogOut } from 'react-icons/io';
 
 const Navbar = () => {
-  const router = useRouter();
   const { data: session, isPending } = authClient.useSession();
-  const [isSigningOut, setIsSigningOut] = useState(false);
   const userName = session?.user;
   const avatarSrc = session?.user?.image;
-
-  const handleLogout = async () => {
-    try {
-      setIsSigningOut(true);
-      await authClient.signOut();
-      router.refresh();
-      window.location.href = '/login';
-    } finally {
-      setIsSigningOut(false);
-    }
-  };
 
   const navLinks = (
     <>
@@ -82,32 +67,18 @@ const Navbar = () => {
             >
               {navLinks}
               <li className="mt-3 gap-2 border-t border-emerald-100 pt-3">
-                {userName ? (
-                  <button
-                    type="button"
-                    onClick={handleLogout}
-                    disabled={isSigningOut}
-                    className="btn btn-sm rounded-full bg-slate-100 text-slate-700"
-                  >
-                    <IoIosLogOut />
-                    {isSigningOut ? 'Logging out...' : 'Logout'}
-                  </button>
-                ) : (
-                  <>
-                    <Link
-                      href="/login"
-                      className="btn btn-sm rounded-full bg-slate-100 text-slate-700"
-                    >
-                      Login
-                    </Link>
-                    <Link
-                      href="/register"
-                      className="btn btn-sm rounded-full border-0 bg-emerald-500 text-white"
-                    >
-                      Join Free
-                    </Link>
-                  </>
-                )}
+                <Link
+                  href="/login"
+                  className="btn btn-sm rounded-full bg-slate-100 text-slate-700"
+                >
+                  Login
+                </Link>
+                <Link
+                  href="/register"
+                  className="btn btn-sm rounded-full border-0 bg-emerald-500 text-white"
+                >
+                  Join Free
+                </Link>
               </li>
             </ul>
           </div>
@@ -143,22 +114,21 @@ const Navbar = () => {
                 <h1>Hello, {userName?.name || 'Guest'}!</h1>
                 <Image
                   src={avatarSrc}
-                  alt={`${userName?.name || 'User'} avatar`}
+                  alt={`${userName?.name || 'User'}`}
                   className="rounded-full object-cover"
                   width={41}
                   height={41}
                   unoptimized
                 />
 
-                <button
-                  type="button"
-                  onClick={handleLogout}
-                  disabled={isSigningOut}
+                <Link
+                  href="/login"
                   className="btn btn-ghost hidden rounded-full px-4 text-slate-700 xl:inline-flex"
+                  onClick={async () => await authClient.signOut()}
                 >
                   <IoIosLogOut />
-                  {isSigningOut ? 'Logging out...' : 'Logout'}
-                </button>
+                  Logout
+                </Link>
               </div>
             </div>
           ) : (
