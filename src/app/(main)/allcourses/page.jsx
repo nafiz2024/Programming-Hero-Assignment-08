@@ -1,17 +1,34 @@
+'use client';
+
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { IoIosStar } from 'react-icons/io';
 import {
   FiArrowRight,
   FiBookOpen,
   FiLayers,
+  FiSearch,
   FiTrendingUp,
   FiUsers,
 } from 'react-icons/fi';
 import { getAllCourses, getInstructorData } from '../../../lib/data';
 
-const AllCourses = async () => {
-  const courses = await getAllCourses();
-  const instructors = await getInstructorData();
+const AllCourses = () => {
+  const [courses, setCourses] = useState([]);
+  const [instructors, setInstructors] = useState([]);
+  const [searchText, setSearchText] = useState('');
+
+  useEffect(() => {
+    const loadData = async () => {
+      const coursesData = await getAllCourses();
+      const instructorsData = await getInstructorData();
+
+      setCourses(coursesData);
+      setInstructors(instructorsData);
+    };
+
+    loadData();
+  }, []);
 
   const totalCourses = courses.length;
   const totalCategories = new Set(courses.map((course) => course.category))
@@ -22,6 +39,9 @@ const AllCourses = async () => {
   const newCourses = courses.filter(
     (course) => course.isNewCourse === true,
   ).length;
+  const filteredCourses = courses.filter((course) =>
+    course.title.toLowerCase().includes(searchText.toLowerCase()),
+  );
 
   return (
     <section className="relative overflow-hidden px-4 py-8 sm:px-6 lg:px-0">
@@ -119,111 +139,135 @@ const AllCourses = async () => {
           </p>
         </div>
 
-        <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
-          {courses.map((course, index) => {
-            const matchedInstructor = instructors.find(
-              (instructor) => instructor.name === course.instructor,
-            );
+        <div className="mx-auto mb-8 max-w-xl">
+          <label className="flex items-center gap-3 rounded-[1.5rem] border border-emerald-100 bg-white px-4 py-3 shadow-sm shadow-emerald-100">
+            <FiSearch className="text-lg text-emerald-600" />
+            <input
+              type="text"
+              value={searchText}
+              onChange={(e) => setSearchText(e.target.value)}
+              placeholder="Search courses by title"
+              className="w-full bg-transparent text-sm text-slate-700 outline-none placeholder:text-slate-400"
+            />
+          </label>
+        </div>
 
-            return (
-              <article
-                key={course.id}
-                className="group relative flex h-full flex-col overflow-hidden rounded-[2rem] border border-emerald-100/80 bg-white/90 p-3 shadow-[0_20px_60px_-30px_rgba(16,185,129,0.45)] transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_28px_80px_-32px_rgba(16,185,129,0.55)]"
-              >
-                <div className="pointer-events-none absolute inset-x-10 top-0 h-1 rounded-full bg-gradient-to-r from-emerald-400 via-teal-400 to-amber-400"></div>
-                <div className="pointer-events-none absolute -right-10 -top-10 h-32 w-32 rounded-full bg-emerald-50 transition-transform duration-300 group-hover:scale-110"></div>
+        {filteredCourses.length === 0 ? (
+          <div className="rounded-[2rem] border border-emerald-100/80 bg-white/90 px-6 py-12 text-center shadow-[0_20px_60px_-30px_rgba(16,185,129,0.45)]">
+            <h3 className="text-2xl font-black text-slate-900">
+              No course found
+            </h3>
+            <p className="mt-3 text-sm text-slate-600">
+              Try searching with a different course title.
+            </p>
+          </div>
+        ) : (
+          <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+            {filteredCourses.map((course, index) => {
+              const matchedInstructor = instructors.find(
+                (instructor) => instructor.name === course.instructor,
+              );
 
-                <div className="relative overflow-hidden rounded-[1.5rem] bg-slate-100">
-                  <img
-                    src={course.image}
-                    alt={course.title}
-                    className="h-56 w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-900/35 via-transparent to-transparent opacity-80"></div>
+              return (
+                <article
+                  key={course.id}
+                  className="group relative flex h-full flex-col overflow-hidden rounded-[2rem] border border-emerald-100/80 bg-white/90 p-3 shadow-[0_20px_60px_-30px_rgba(16,185,129,0.45)] transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_28px_80px_-32px_rgba(16,185,129,0.55)]"
+                >
+                  <div className="pointer-events-none absolute inset-x-10 top-0 h-1 rounded-full bg-gradient-to-r from-emerald-400 via-teal-400 to-amber-400"></div>
+                  <div className="pointer-events-none absolute -right-10 -top-10 h-32 w-32 rounded-full bg-emerald-50 transition-transform duration-300 group-hover:scale-110"></div>
 
-                  <div className="absolute left-4 top-4 flex flex-wrap gap-2">
-                    <span className="rounded-full border border-white/40 bg-white/15 px-3 py-1 text-xs font-bold uppercase tracking-[0.22em] text-white backdrop-blur-md">
-                      Course 0{index + 1}
-                    </span>
-                    {course.isNewCourse ? (
-                      <span className="rounded-full border border-sky-100/70 bg-sky-50/90 px-3 py-1 text-xs font-bold uppercase tracking-[0.2em] text-sky-600 shadow-sm">
-                        New
-                      </span>
-                    ) : null}
-                  </div>
-
-                  <div className="absolute bottom-4 right-4 rounded-full border border-orange-200/70 bg-orange-50/90 px-3 py-1 text-xs font-bold uppercase tracking-[0.22em] text-orange-500 shadow-sm">
-                    {course.level}
-                  </div>
-                </div>
-
-                <div className="relative flex flex-1 flex-col p-3">
-                  <div className="flex items-center justify-between gap-3">
-                    <span className="inline-flex rounded-full border border-orange-100 bg-gradient-to-r from-orange-50 to-amber-50 px-3 py-1 text-xs font-bold uppercase tracking-[0.24em] text-orange-500 shadow-sm shadow-orange-100">
-                      {course.category}
-                    </span>
-                    {course.popularCourse ? (
-                      <span className="rounded-full border border-emerald-100 bg-emerald-50 px-3 py-1 text-xs font-bold uppercase tracking-[0.2em] text-emerald-600">
-                        Popular
-                      </span>
-                    ) : null}
-                  </div>
-
-                  <h3 className="mt-4 text-2xl font-black leading-tight text-slate-900">
-                    {course.title}
-                  </h3>
-
-                  <p className="mt-3 line-clamp-2 text-sm leading-7 text-slate-600">
-                    {course.description}
-                  </p>
-
-                  <div className="mt-4 flex items-center gap-3 text-sm font-medium text-slate-500">
+                  <div className="relative overflow-hidden rounded-[1.5rem] bg-slate-100">
                     <img
-                      src={
-                        matchedInstructor?.image ||
-                        `https://ui-avatars.com/api/?name=${encodeURIComponent(course.instructor)}&background=ecfdf5&color=047857&bold=true`
-                      }
-                      alt={course.instructor}
-                      className="h-10 w-10 rounded-full object-cover ring-2 ring-white shadow-sm shadow-emerald-100"
+                      src={course.image}
+                      alt={course.title}
+                      className="h-56 w-full object-cover transition-transform duration-500 group-hover:scale-105"
                     />
-                    <div>
-                      <p className="font-semibold text-slate-700">
-                        {course.instructor}
-                      </p>
-                      <p className="text-xs text-slate-500">
-                        {matchedInstructor?.expertise || course.category}
-                      </p>
+                    <div className="absolute inset-0 bg-gradient-to-t from-slate-900/35 via-transparent to-transparent opacity-80"></div>
+
+                    <div className="absolute left-4 top-4 flex flex-wrap gap-2">
+                      <span className="rounded-full border border-white/40 bg-white/15 px-3 py-1 text-xs font-bold uppercase tracking-[0.22em] text-white backdrop-blur-md">
+                        Course 0{index + 1}
+                      </span>
+                      {course.isNewCourse ? (
+                        <span className="rounded-full border border-sky-100/70 bg-sky-50/90 px-3 py-1 text-xs font-bold uppercase tracking-[0.2em] text-sky-600 shadow-sm">
+                          New
+                        </span>
+                      ) : null}
+                    </div>
+
+                    <div className="absolute bottom-4 right-4 rounded-full border border-orange-200/70 bg-orange-50/90 px-3 py-1 text-xs font-bold uppercase tracking-[0.22em] text-orange-500 shadow-sm">
+                      {course.level}
                     </div>
                   </div>
 
-                  <div className="mt-4 flex items-center justify-between gap-3">
-                    <span className="inline-flex items-center gap-2 rounded-full border border-amber-200 bg-white px-3 py-1 text-sm font-bold text-amber-700 shadow-sm shadow-amber-100">
-                      <span className="text-xl leading-none text-amber-400 drop-shadow-[0_2px_6px_rgba(251,191,36,0.35)]">
-                        <IoIosStar />
+                  <div className="relative flex flex-1 flex-col p-3">
+                    <div className="flex items-center justify-between gap-3">
+                      <span className="inline-flex rounded-full border border-orange-100 bg-gradient-to-r from-orange-50 to-amber-50 px-3 py-1 text-xs font-bold uppercase tracking-[0.24em] text-orange-500 shadow-sm shadow-orange-100">
+                        {course.category}
                       </span>
-                      <span>{course.rating}/5</span>
-                    </span>
-                    <span className="rounded-full border border-emerald-200 bg-gradient-to-r from-emerald-50 to-teal-50 px-3 py-1 text-sm font-bold tracking-wide text-emerald-700 shadow-sm shadow-emerald-100">
-                      {course.duration}
-                    </span>
-                  </div>
+                      {course.popularCourse ? (
+                        <span className="rounded-full border border-emerald-100 bg-emerald-50 px-3 py-1 text-xs font-bold uppercase tracking-[0.2em] text-emerald-600">
+                          Popular
+                        </span>
+                      ) : null}
+                    </div>
 
-                  <div className="mt-auto pt-5">
-                    <div className="h-px w-full bg-gradient-to-r from-transparent via-emerald-100 to-transparent"></div>
+                    <h3 className="mt-4 text-2xl font-black leading-tight text-slate-900">
+                      {course.title}
+                    </h3>
 
-                    <Link
-                      href={`/courses/${course.id}`}
-                      className="mt-5 flex w-full items-center justify-center gap-2 rounded-2xl border-0 bg-gradient-to-r from-emerald-500 via-teal-500 to-sky-500 px-5 py-3 text-sm font-bold text-white shadow-[0_16px_30px_-18px_rgba(20,184,166,0.85)] transition duration-300 hover:scale-[1.01] hover:from-emerald-600 hover:via-teal-600 hover:to-sky-600"
-                    >
-                      View Course Details
-                      <FiArrowRight />
-                    </Link>
+                    <p className="mt-3 line-clamp-2 text-sm leading-7 text-slate-600">
+                      {course.description}
+                    </p>
+
+                    <div className="mt-4 flex items-center gap-3 text-sm font-medium text-slate-500">
+                      <img
+                        src={
+                          matchedInstructor?.image ||
+                          `https://ui-avatars.com/api/?name=${encodeURIComponent(course.instructor)}&background=ecfdf5&color=047857&bold=true`
+                        }
+                        alt={course.instructor}
+                        className="h-10 w-10 rounded-full object-cover ring-2 ring-white shadow-sm shadow-emerald-100"
+                      />
+                      <div>
+                        <p className="font-semibold text-slate-700">
+                          {course.instructor}
+                        </p>
+                        <p className="text-xs text-slate-500">
+                          {matchedInstructor?.expertise || course.category}
+                        </p>
+                      </div>
+                    </div>
+
+                    <div className="mt-4 flex items-center justify-between gap-3">
+                      <span className="inline-flex items-center gap-2 rounded-full border border-amber-200 bg-white px-3 py-1 text-sm font-bold text-amber-700 shadow-sm shadow-amber-100">
+                        <span className="text-xl leading-none text-amber-400 drop-shadow-[0_2px_6px_rgba(251,191,36,0.35)]">
+                          <IoIosStar />
+                        </span>
+                        <span>{course.rating}/5</span>
+                      </span>
+                      <span className="rounded-full border border-emerald-200 bg-gradient-to-r from-emerald-50 to-teal-50 px-3 py-1 text-sm font-bold tracking-wide text-emerald-700 shadow-sm shadow-emerald-100">
+                        {course.duration}
+                      </span>
+                    </div>
+
+                    <div className="mt-auto pt-5">
+                      <div className="h-px w-full bg-gradient-to-r from-transparent via-emerald-100 to-transparent"></div>
+
+                      <Link
+                        href={`/courses/${course.id}`}
+                        className="mt-5 flex w-full items-center justify-center gap-2 rounded-2xl border-0 bg-gradient-to-r from-emerald-500 via-teal-500 to-sky-500 px-5 py-3 text-sm font-bold text-white shadow-[0_16px_30px_-18px_rgba(20,184,166,0.85)] transition duration-300 hover:scale-[1.01] hover:from-emerald-600 hover:via-teal-600 hover:to-sky-600"
+                      >
+                        View Course Details
+                        <FiArrowRight />
+                      </Link>
+                    </div>
                   </div>
-                </div>
-              </article>
-            );
-          })}
-        </div>
+                </article>
+              );
+            })}
+          </div>
+        )}
       </div>
     </section>
   );
