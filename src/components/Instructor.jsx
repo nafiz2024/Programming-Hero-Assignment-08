@@ -27,7 +27,7 @@ const Instructor = ({ allInstructorData }) => {
                 {allInstructors.map((instructor, index) => (
                     <div
                         key={instructor.id}
-                        className="group relative overflow-hidden rounded-[2rem] border border-emerald-100/80 bg-white/90 p-6 shadow-[0_20px_60px_-30px_rgba(16,185,129,0.45)] transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_28px_80px_-32px_rgba(16,185,129,0.55)]"
+                        className="group relative flex h-full flex-col overflow-hidden rounded-[2rem] border border-emerald-100/80 bg-white/90 p-6 shadow-[0_20px_60px_-30px_rgba(16,185,129,0.45)] transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_28px_80px_-32px_rgba(16,185,129,0.55)]"
                     >
                         <div className="absolute inset-x-6 top-0 h-1 rounded-full bg-gradient-to-r from-emerald-400 via-teal-400 to-amber-400"></div>
                         <div className="absolute -right-8 -top-8 h-28 w-28 rounded-full bg-emerald-50 transition-transform duration-300 group-hover:scale-110"></div>
@@ -65,7 +65,7 @@ const Instructor = ({ allInstructorData }) => {
                             </p>
                         </div>
 
-                        <div className="mt-6 flex items-center justify-between">
+                        <div className="mt-auto flex items-center justify-between pt-6">
                             <div className="flex items-center gap-1 text-amber-400">
                                 {Array.from({ length: 5 }).map((_, starIndex) => (
                                     <FaStar key={starIndex} className="text-lg drop-shadow-[0_2px_6px_rgba(251,191,36,0.35)]" />
