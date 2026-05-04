@@ -143,7 +143,6 @@ const UpdateProfilePage = () => {
                 </Link>
 
                 <div className="space-y-2">
-                  
                   <h2 className="text-3xl font-black text-slate-900 sm:text-4xl">
                     Update Profile
                   </h2>
