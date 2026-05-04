@@ -21,9 +21,17 @@ const LoginPage = () => {
   const [isShowPassword, setIsShowPassword] = useState(false);
 
   const handleGoogleSignin = async () => {
-    const data = await authClient.signIn.social({
+    const { error } = await authClient.signIn.social({
       provider: 'google',
+      callbackURL: '/',
     });
+
+    if (error) {
+      toast.error(error.message || 'Google login failed', {
+        position: 'top-center',
+        autoClose: 3000,
+      });
+    }
   };
 
   const handleLoginFunction = async (data) => {
