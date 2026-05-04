@@ -150,7 +150,7 @@ const UpdateProfilePage = () => {
                     Edit your information and save the latest version of your
                     SkillSphere account.
                   </p>
-                </div>
+                </div> 
               </div>
 
               <form className="space-y-4" onSubmit={handleSubmit(onSubmit)}>
