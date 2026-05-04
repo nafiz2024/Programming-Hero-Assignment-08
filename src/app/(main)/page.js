@@ -1,9 +1,9 @@
-import PopularCourses from "@/components/PopularCourses";
-import Banner from "@/components/Banner";
-import { getAllCourses, getBannerData, getInstructorData } from "@/lib/data";
-import LearningTips from "@/components/LearningTips";
-import Instructor from "@/components/Instructor";
-import TrendingCourses from "@/components/TrendingCourses";
+import PopularCourses from "../../components/PopularCourses";
+import Banner from "../../components/Banner";
+import { getAllCourses, getBannerData, getInstructorData } from "../../lib/data";
+import LearningTips from "../../components/LearningTips";
+import Instructor from "../../components/Instructor";
+import TrendingCourses from "../../components/TrendingCourses";
 
 export default async function Home() {
   const bannerData = await getBannerData();

@@ -1,4 +1,4 @@
-import { MainRouteLoading } from "@/components/shared/RouteLoading";
+import { MainRouteLoading } from "../../components/shared/RouteLoading";
 
 const MainLoadingPage = () => {
     return <MainRouteLoading />;

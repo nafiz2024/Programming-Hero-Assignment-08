@@ -1,4 +1,4 @@
-import { AuthRouteLoading } from "@/components/shared/RouteLoading";
+import { AuthRouteLoading } from "../../components/shared/RouteLoading";
 
 const AuthLoadingPage = () => {
     return <AuthRouteLoading />;

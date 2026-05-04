@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { FiLogIn, FiMenu, FiUserPlus } from "react-icons/fi";
-import navLogo from "@/assets/NavLogo.png";
+import navLogo from "../../assets/NavLogo.png";
 
 const navItems = [
     { href: "/", label: "Home" },

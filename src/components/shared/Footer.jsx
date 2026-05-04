@@ -4,7 +4,7 @@ import Link from "next/link";
 import { FaFacebookF, FaLinkedinIn, FaTwitter, FaYoutube } from "react-icons/fa";
 import { FiClock, FiMail, FiPhoneCall } from "react-icons/fi";
 import { IoSend } from "react-icons/io5";
-import footerLogo from "@/assets/FooterLogo.png";
+import footerLogo from "../../assets/FooterLogo.png";
 
 const Footer = () => {
     const quickLinks = [

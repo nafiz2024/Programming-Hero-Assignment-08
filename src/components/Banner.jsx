@@ -6,9 +6,9 @@ import { FiArrowRight, FiBookOpen, FiPlayCircle, FiUsers } from "react-icons/fi"
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
 import "swiper/css";
-import bannerSlideOne from "@/assets/banner-slide-1.png";
-import bannerSlideTwo from "@/assets/banner-slide-2.png";
-import bannerSlideThree from "@/assets/banner-slide-3.png";
+import bannerSlideOne from "../assets/banner-slide-1.png";
+import bannerSlideTwo from "../assets/banner-slide-2.png";
+import bannerSlideThree from "../assets/banner-slide-3.png";
 
 const bannerImages = {
     bannerSlideOne,

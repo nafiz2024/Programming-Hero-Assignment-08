@@ -2,7 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { FiArrowLeft, FiAward, FiBookOpen, FiClock, FiLayers, FiPlayCircle, FiUsers } from "react-icons/fi";
 import { IoIosStar } from "react-icons/io";
-import { getCourseDetails, getInstructorData } from "@/lib/data";
+import { getCourseDetails, getInstructorData } from "../../../../lib/data";
 
 const CourseDetails = async ({ params }) => {
     const { id } = await params;

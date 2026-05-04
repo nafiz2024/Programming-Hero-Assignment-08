@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { IoIosStar } from "react-icons/io";
 import { FiArrowRight, FiBookOpen, FiLayers, FiTrendingUp, FiUsers } from "react-icons/fi";
-import { getAllCourses, getInstructorData } from "@/lib/data";
+import { getAllCourses, getInstructorData } from "../../../lib/data";
 
 const AllCourses = async () => {
     const courses = await getAllCourses();

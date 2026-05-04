@@ -3,8 +3,9 @@
 import Image from "next/image";
 import Link from "next/link";
 import { FiImage, FiLock, FiMail, FiUser } from "react-icons/fi";
-import navLogo from "@/assets/NavLogo.png";
+import navLogo from "../../../assets/NavLogo.png";
 import { useForm } from "react-hook-form";
+import { authClient } from "../../../lib/auth-client";
 
 const RegisterPage = () => {
   const {
@@ -13,8 +14,18 @@ const RegisterPage = () => {
     formState: { errors },
   } = useForm();
 
-  const handleRegisterFunction = (data) => {
-    console.log("Register data:", data);
+  const handleRegisterFunction = async (data) => {
+    const { email, name, photoUrl, password } = data;
+
+    const { data: res, error } = await authClient.signUp.email({
+      name: name,
+      email: email,
+      password: password,
+      image: photoUrl,
+      callbackURL: "/",
+    })
+
+    console.log(res, error);
   };
 
   return (

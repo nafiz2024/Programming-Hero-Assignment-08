@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { FcGoogle } from "react-icons/fc";
 import { FiLock, FiMail } from "react-icons/fi";
-import navLogo from "@/assets/NavLogo.png";
+import navLogo from "../../../assets/NavLogo.png";
 import { useForm } from "react-hook-form";
 
 const LoginPage = () => {
