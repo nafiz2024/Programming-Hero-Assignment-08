@@ -6,6 +6,7 @@ import { FiImage, FiLock, FiMail, FiUser } from "react-icons/fi";
 import navLogo from "../../../assets/NavLogo.png";
 import { useForm } from "react-hook-form";
 import { authClient } from "../../../lib/auth-client";
+import { toast } from "react-toastify";
 
 const RegisterPage = () => {
   const {
@@ -25,7 +26,19 @@ const RegisterPage = () => {
       callbackURL: "/",
     })
 
-    console.log(res, error);
+    if (error) {
+        toast.error(`${error.message}`, {
+        position: "top-center",
+        autoClose: 3000,
+      })
+    }
+
+    if (res) {
+      toast.success(`Sign Up Successful`, {
+        position: "top-center",
+        autoClose: 3000,
+      });
+    }
   };
 
   return (

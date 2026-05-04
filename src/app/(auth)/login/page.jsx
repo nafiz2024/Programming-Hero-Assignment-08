@@ -6,6 +6,7 @@ import { FcGoogle } from "react-icons/fc";
 import { FiLock, FiMail } from "react-icons/fi";
 import navLogo from "../../../assets/NavLogo.png";
 import { useForm } from "react-hook-form";
+import { authClient } from "../../../lib/auth-client";
 
 const LoginPage = () => {
   const {
@@ -14,8 +15,14 @@ const LoginPage = () => {
     formState: { errors },
   } = useForm();
 
-  const handleLoginFunction = (data) => {
-    console.log("Login data:", data);
+  const handleLoginFunction = async (data) => {
+    
+    const { data:res , error } = await authClient.signIn.email({
+    email: data.email, // required
+    password: data.password, // required
+    rememberMe: true,
+    callbackURL: "/",
+});
   };
 
   return (
