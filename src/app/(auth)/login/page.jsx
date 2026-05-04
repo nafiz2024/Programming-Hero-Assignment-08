@@ -8,6 +8,8 @@ import navLogo from '../../../assets/NavLogo.png';
 import { useForm } from 'react-hook-form';
 import { authClient } from '../../../lib/auth-client';
 import { toast } from 'react-toastify';
+import { useState } from 'react';
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
 
 const LoginPage = () => {
   const {
@@ -15,6 +17,8 @@ const LoginPage = () => {
     handleSubmit,
     formState: { errors },
   } = useForm();
+
+  const [isShowPassword, setIsShowPassword] = useState(false);
 
   const handleLoginFunction = async (data) => {
     const { data: res, error } = await authClient.signIn.email({
@@ -122,16 +126,23 @@ const LoginPage = () => {
                   <span className="text-sm font-semibold text-slate-700">
                     Password
                   </span>
-                  <span className="flex items-center gap-3 rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 shadow-sm shadow-slate-100 transition focus-within:border-emerald-400 focus-within:bg-white">
+                  <span className="relative flex items-center gap-3 rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 shadow-sm shadow-slate-100 transition focus-within:border-emerald-400 focus-within:bg-white">
                     <FiLock className="text-slate-400" />
                     <input
-                      type="password"
+                      type={isShowPassword ? 'text' : 'password'}
                       placeholder="Enter your password"
-                      className="w-full bg-transparent text-sm text-slate-700 outline-none placeholder:text-slate-400"
+                      className="w-full bg-transparent pr-8 text-sm text-slate-700 outline-none placeholder:text-slate-400"
                       {...register('password', {
                         required: 'Password field is required',
                       })}
                     />
+                    <button
+                      type="button"
+                      className="absolute top-1/2 right-4 -translate-y-1/2 cursor-pointer text-xl text-slate-600"
+                      onClick={() => setIsShowPassword(!isShowPassword)}
+                    >
+                      {isShowPassword ? <FaEye /> : <FaEyeSlash />}
+                    </button>
                   </span>
                   {errors.password && (
                     <p className="text-sm text-red-500">
