@@ -20,6 +20,20 @@ const LoginPage = () => {
 
   const [isShowPassword, setIsShowPassword] = useState(false);
 
+  const handleGoogleSignin = async () => {
+    const { error } = await authClient.signIn.social({
+      provider: 'google',
+      callbackURL: '/',
+    });
+
+    if (error) {
+      toast.error(error.message || 'Google login failed', {
+        position: 'top-center',
+        autoClose: 3000,
+      });
+    }
+  };
+
   const handleLoginFunction = async (data) => {
     const { data: res, error } = await authClient.signIn.email({
       email: data.email, // required
@@ -170,6 +184,7 @@ const LoginPage = () => {
               <button
                 type="button"
                 className="btn h-12 w-full rounded-2xl border border-slate-200 bg-white text-sm font-semibold text-slate-700 shadow-sm hover:border-emerald-200 hover:bg-emerald-50"
+                onClick={handleGoogleSignin}
               >
                 <FcGoogle className="text-xl" />
                 Google Login
